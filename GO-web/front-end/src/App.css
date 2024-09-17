@@ -1,0 +1,252 @@
+/* Global Styles */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+}
+
+.header {
+  display: flex;
+  background-color: #db3e3e;
+  color: #00ff00;
+  justify-content: space-between;
+  padding: 10px 20px;
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 0px;
+  border-radius: 14px;
+}
+
+.nav-container {
+  margin-left: auto;
+  justify-content: space-between;
+}
+
+.home-nav-link, .login-button { /* Add .nav-link styles */
+  color: white;
+  font-size: 0.7rem;
+}
+
+.home-nav-link {
+  background-color: #db3e3e;
+  color: #00ff00; /* Add color */
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.login-button {
+  background-color: white;
+  color: black; /* Add color */
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.login-button:hover {
+  background-color: #f0f0f0;
+}
+
+.goText {
+  font-size: 1rem;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.mottoText {
+  text-align: center;
+  font-size: 1.5rem;
+  margin: 20px auto;
+  width: 80%;
+  color: #555;
+  font-style: italic;
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center; 
+  margin: 30px auto;
+  padding: 0;
+  max-width: 1200px;
+}
+
+.img_container {
+  flex: 1;
+  max-width: 40%; /* Limit the width to 40% */
+}
+
+.seller0mage img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.seller0mage img:hover {
+  transform: scale(1.05);
+}
+
+.intro {
+  flex: 1;
+  max-width: 55%; 
+  margin-right: 20px;
+  text-align: left;
+}
+
+.intro h3 {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.intro p {
+  font-size: 1rem;
+  color: #666;
+  line-height: 1.3;
+  margin: 15px 0;
+}
+
+/* Button Styles */
+.e_b_container {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.e_button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 15px 30px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.e_button:hover {
+  background-color: #45a049;
+}
+
+/* Login Modal Styles */
+.login-modal {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* Darkened modal background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* Login Card Styles */
+.login-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 2rem;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+  text-align: center;
+  color: #333;
+}
+
+/* Title Styles */
+.login-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #db3e3e;
+  font-weight: bold;
+}
+
+/* Form Styles */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+/* Input Field Styles */
+.login-input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.login-input:focus {
+  border-color: #db3e3e;
+  outline: none;
+}
+
+/* Login Button Styles */
+.login-button {
+  background-color: #db3e3e;
+  color: white;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #0056b3;
+}
+
+/* Close Button Styles */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.close-button:hover {
+  color: #db3e3e;
+}
+
+/* Link Styles */
+.sign-link {
+  color: #db3e3e;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.sign-link:hover {
+  text-decoration: underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .header {
+    font-size: 2rem;
+    padding: 15px 0;
+  }
+
+  .mottoText {
+    font-size: 1.2rem;
+    width: 90%;
+  }
+
+  .img_container,
+  .intro {
+    max-width: 90%; 
+  }
+
+  .seller0mage img {
+    margin-bottom: 20px;
+  }
+}
+

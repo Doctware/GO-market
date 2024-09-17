@@ -1,0 +1,12 @@
+footer {
+  text-align: center;
+  background-color: #db3e3e;
+  width: 100%; /* Ensure footer takes full width */
+  position: ;
+  bottom: 0; /* Fixed position at the bottom */
+  height: 61px;
+  border-radius: 13px;
+  color: white;
+  line-height: 61px; /* Center text vertically */
+}
+

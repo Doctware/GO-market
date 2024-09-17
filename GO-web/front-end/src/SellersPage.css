@@ -1,0 +1,98 @@
+/* General page styling */
+.seller-page {
+  padding: 20px;
+  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  color: #333;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h2 {
+  text-align: center;
+  color: #444;
+  margin-bottom: 40px;
+  font-size: 2rem;
+}
+
+/* Seller container styles */
+.seller-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* Seller details container */
+.seller-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.2s ease;
+}
+
+.seller-details:hover {
+  transform: translateY(-5px);
+}
+
+/* Seller image styling */
+.seller-image img {
+  width: 100%;
+  max-width: 150px;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 15px;
+}
+
+/* Seller information styling */
+.seller-info {
+  text-align: center;
+  font-size: 1rem;
+}
+
+.seller-info p {
+  margin: 5px 0;
+}
+
+/* WhatsApp link styling */
+.seller-info a {
+  color: #25d366; /* WhatsApp green */
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.seller-info a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive design: for larger screens */
+@media (min-width: 768px) {
+  .seller-container {
+    grid-template-columns: 1fr 1fr; /* Two sellers per row */
+  }
+}
+
+@media (min-width: 1024px) {
+  .seller-details {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+  }
+
+  .seller-image img {
+    max-width: 120px; /* Adjust image size for larger screens */
+  }
+
+  .seller-info {
+    text-align: left;
+    font-size: 1.1rem;
+  }
+
+  h2 {
+    font-size: 2.5rem;
+  }
+}

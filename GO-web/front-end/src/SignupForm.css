@@ -1,0 +1,93 @@
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Signup Modal Styles */
+.signup-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.6); /* Modal background */
+}
+
+/* Signup Card Styles */
+.signup-card {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+/* Title Styles */
+.signup-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #db3e3e;
+}
+
+/* Form Styles */
+.signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* Input Field Styles */
+.signup-input {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  background-color: #fafafa;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.signup-input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Label Styles */
+.signup-form label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.3rem;
+  display: block;
+}
+
+/* Button Styles */
+.signup-button {
+  background-color: #db3e3e;
+  color: white;
+  border: none;
+  padding: 0.8rem;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.signup-button:hover {
+  background-color: #0056b3;
+}
+
+/* Link Styles */
+.login-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link:hover {
+  text-decoration: underline;
+}
