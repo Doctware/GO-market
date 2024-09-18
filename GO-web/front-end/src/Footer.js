@@ -4,7 +4,7 @@ import './Footer.css';
 const Footer = () => {
   return (
     <footer className='buttom'>
-      <h2>© 2024 GOmarket. All rights reserved.</h2>
+      <h3>© 2024 GOmarket. All rights reserved.</h3>
     </footer>
   );
 };

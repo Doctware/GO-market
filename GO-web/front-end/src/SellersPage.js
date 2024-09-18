@@ -1,10 +1,11 @@
+/* this module contains functin for sellers page */
+
 import React from 'react';
 import './SellersPage.css'
-import Header from './App.js'
 import meatSeller from './goImage/meatSeler.jpeg';
 import peperSeller from './goImage/peperSeller.jpeg';
 
-/* sellers Page functio */
+/* sellers Page function */
 const SellerPage = () => {
   const sellers = [
     {

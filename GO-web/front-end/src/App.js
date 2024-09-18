@@ -1,30 +1,43 @@
 import React, { useState } from 'react';
-import { BrowserRouter as Router, Route, Routes, Link, useNavigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Link, Navigate, useNavigate } from 'react-router-dom';
 import './App.css';
 import Footer from './Footer.js';
 import goImage from './goImage/seller0.jpeg';
 import SignupForm from './SignupForm.js';
-import SellerPage from './SellersPage.js'
+import SellerPage from './SellersPage.js';
+import PrivateRoute from './Authenticator.js'; // Fixed import
 
-const Header = () => {
+/* Header component */
+const Header = ({ isAuthenticated, setIsAuthenticated }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setIsAuthenticated(false); // Log out user
+    navigate('/login');
+  };
+
   return (
     <header className='header'>
       <div className='goText'>GOmarket</div>
       <div className='nav-container'>
         <nav>
           <Link to='/' className='home-nav-link'>Home</Link>
-	  <Link to='/SellersPage' className="sellers-nav-link">Sellers Page</Link>
-          <Link to='/login' className='login-button'>Login</Link>
+          {isAuthenticated ? (
+            <button className='logout-button' onClick={handleLogout}>Logout</button>
+          ) : (
+            <Link to='/login' className='login-button'>Login</Link>
+          )}
         </nav>
       </div>
     </header>
   );
 };
 
-const GoView = () => {
+/* Main Landing Page */
+const GoView = ({ isAuthenticated }) => {
   return (
     <div>
-      <Header />
+      <Header isAuthenticated={isAuthenticated} />
       <div className='mottoText'>
         "Grocery Shopping Let go to market without leaving your doorstep"
       </div>
@@ -43,27 +56,31 @@ const GoView = () => {
         </div>
       </div>
       <div className='e_b_container'>
-        <button className='e_button'>Explore</button>
+        <Link to={isAuthenticated ? "/sellers" : "/login"}>
+          <button className='e_button'>Explore</button>
+        </Link>
       </div>
       <Footer />
     </div>
   );
 };
 
-const LoginPage = ({ onClose }) => {
+/* Login Page */
+const LoginPage = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Remove empty string
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login attempted with:', { email, password });
-    navigate('/');
+    // Simulate authentication success
+    setIsAuthenticated(true);
+    navigate('/sellers'); // Redirect to Sellers page after login
   };
 
   return (
-    <div className='login-modal'> {/* Fixed spelling */}
-      <div className='login-card'> {/* Fixed spelling */}
+    <div className='login-modal'>
+      <div className='login-card'>
         <h2 className='login-title'>Login</h2>
         <form onSubmit={handleSubmit} className='login-form'>
           <div>
@@ -88,27 +105,37 @@ const LoginPage = ({ onClose }) => {
               className='login-input'
             />
           </div>
-          <button type='submit' className='login-button'>
-            Log In
-          </button>
+          <button type='submit' className='login-button'>Log In</button>
         </form>
         <p>
-          "Don't have a GO account?" <a href='/Sign-up' className='sign-link'>Sign up on Go</a>
+          "Don't have a GO account?" <Link to='/sign-up' className='sign-link'>Sign up on Go</Link>
         </p>
       </div>
-      <button onClick={onClose} className='close-button'>x</button>
     </div>
   );
 };
 
-function App () {
+/* Main App Component */
+function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
   return (
     <Router>
       <Routes>
-	<Route path='/' element={<GoView />} />
-        <Route path='/login' element={<LoginPage />} />
-	<Route path='/Sign-up' element={<SignupForm />} />
-        <Route path='/sellersPage' element={<SellerPage />} />
+        {/* Public Routes */}
+        <Route path='/' element={<GoView isAuthenticated={isAuthenticated} />} />
+        <Route path='/login' element={<LoginPage setIsAuthenticated={setIsAuthenticated} />} />
+        <Route path='/sign-up' element={<SignupForm />} />
+        
+        {/* Private Route protecting Sellers Page */}
+        <Route
+          path='/sellers'
+          element={
+            <PrivateRoute isAuthenticated={isAuthenticated}>
+              <SellerPage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </Router>
   );
