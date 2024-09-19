@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """ ths module contains the routing fnctions """
 from flask import Blueprint, jsonify, request
+from flask import login_requires, current_user
 from backend.app import db
 from backend.models import User
 
@@ -8,8 +9,14 @@ from backend.models import User
 go_app_bp = Blueprint('go_app', __name__)
 
 @go_app_bp.route('/sellers', methods=['GET'])
+@login_required
 def get_sellers():
-    """ this function is used o fetch sellers """
+
+    """ this function is used to fetch sellers """
+
+    if current_user.role != 'buyer':
+        return jsonify({"error": "Not a GO buyer :)"})
+
     sellers = User.query.filter_by(role='seller').all()
     seller_data = [ {
         "id": sellers.id,
