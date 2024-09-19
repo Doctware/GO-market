@@ -1,6 +1,6 @@
              GO|market "A simple click thats explore the local market"
 
-# GOmarket
+# GOmarket V0.1
 
 **_"A Simple Click to Explore the Local Market"_**
 
