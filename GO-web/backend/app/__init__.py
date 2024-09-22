@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_cors import CORS
-from config import Config
+from app.config import Config
 
 
 db = SQLAlchemy()
@@ -18,6 +18,8 @@ def create_app():
 
         Implementing ORM, migration, and login access
     """
+    #from config import Config
+
     app = Flask(__name__)
     app.config.from_object(Config)
 
@@ -28,7 +30,7 @@ def create_app():
     CORS(app)  # Enabling CORS for the front-end communication
 
     # Importing blueprint/routes
-    from backend.go_app import go_app_bp
+    from app.routes import go_app_bp
     app.register_blueprint(go_app_bp, url_prefix='/api')
 
     return app
