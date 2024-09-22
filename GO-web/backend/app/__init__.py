@@ -31,4 +31,4 @@ def create_app():
     from backend.go_app import go_app_bp
     app.register_blueprint(go_app_bp, url_prefix='/api')
 
-    return apthp
+    return app
