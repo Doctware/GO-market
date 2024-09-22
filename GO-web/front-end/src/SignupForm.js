@@ -19,12 +19,37 @@ const SignupForm = () => {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Add your form submission logic here
-    // After successful signup, navigate to login page
-    navigate('/login');
+    
+    if (formData.password !== formData.confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+
+    try {
+      const response = await fetch('http://localhost:5001/api/register', {
+        method: 'POST',
+        body: JSON.stringify({
+          name: formData.username,
+          email: formData.email,
+          password: formData.password,
+          role: 'buyer', // Adjust this as needed
+        }),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+
+      if (response.ok) {
+        navigate('/login'); // Navigate to login after successful signup
+      } else {
+        const errorData = await response.json();
+        console.error('Error:', errorData);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
@@ -85,7 +110,7 @@ const SignupForm = () => {
           </button>
         </form>
         <p>
-          Already have GO account? <Link to='/login' className='login-link'>Log in</Link>
+          Already have a GO account? <Link to='/login' className='login-link'>Log in</Link>
         </p>
       </div>
     </div>
