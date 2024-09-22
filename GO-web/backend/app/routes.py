@@ -5,7 +5,7 @@ from flask_login import login_required, current_user
 from . import db
 from app.models.user_models import User
 
-go_app_bp = Blueprint('go_app', __name__)
+go_app_bp = Blueprint('routes', __name__)
 
 @go_app_bp.route('/sellers', methods=['GET'])
 @login_required
