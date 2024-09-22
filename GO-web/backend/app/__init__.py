@@ -31,6 +31,6 @@ def create_app():
 
     # Importing blueprint/routes
     from app.routes import go_app_bp
-    app.register_blueprint(go_app_bp, url_prefix='/api')
+    app.register_blueprint(go_app_bp, url_prefix='/api/V1')
 
     return app
