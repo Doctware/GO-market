@@ -1,37 +1,47 @@
 #!/usr/bin/python3
-""" ths module contains the routing fnctions """
+""" This module contains the routing functions """
 from flask import Blueprint, jsonify, request
-from flask import login_requires, current_user
+from flask_login import login_required, current_user
 from backend.app import db
-from backend.models import User
-
+from backend.app.models import User
 
 go_app_bp = Blueprint('go_app', __name__)
 
 @go_app_bp.route('/sellers', methods=['GET'])
 @login_required
 def get_sellers():
-
-    """ this function is used to fetch sellers """
-
+    """ This function fetches the sellers. """
     if current_user.role != 'buyer':
-        return jsonify({"error": "Not a GO buyer :)"})
+        return jsonify({"error": "Not a GO buyer :)"}), 403
 
     sellers = User.query.filter_by(role='seller').all()
-    seller_data = [ {
-        "id": sellers.id,
-        "name": seller.name,
-        "whatsapp": seller.whatsapp
+    seller_data = [
+        {
+            "id": seller.id,
+            "name": seller.name,
+            "whatsapp": seller.whatsapp
         }
         for seller in sellers
     ]
-
+    return jsonify(seller_data), 200
 
 @go_app_bp.route('/register', methods=['POST'])
 def register_user():
-    """ this function implement user registration """
+    """ This function implements user registration """
     data = request.get_json()
-    new_user = User(name=data['name'], email=data['email'], role=data['role'])
+
+    # Check if user with the email already exists
+    if User.query.filter_by(email=data['email']).first():
+        return jsonify({"error": "User with this email already exists"}), 409
+
+    # Create new user
+    new_user = User(
+        name=data['name'], 
+        email=data['email'], 
+        role=data['role']
+    )
+    new_user.set_password(data['password'])  # Hashing the password
     db.session.add(new_user)
     db.session.commit()
-    return jsonify({"message": "Successfuly registered to GO!!"}), 201
+
+    return jsonify({"message": "Successfully registered to GO!"}), 201
