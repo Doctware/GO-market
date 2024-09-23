@@ -37,8 +37,8 @@ body {
 }
 
 .login-button {
-  background-color: white;
-  color: black; /* Add color */
+  background-color: ;
+  color: #00ff00; /* Add color */
   border: none;
   padding: 0.5rem 1rem;
   border-radius: 4px;
@@ -227,6 +227,38 @@ body {
 .sign-link:hover {
   text-decoration: underline;
 }
+
+/* style for navigating back home button*/
+.b_home-button {
+  text-decoration: none;
+}
+
+.home-btn {
+  background-color: #4CAF50; /* Green background */
+  color: white;              /* White text */
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;                  /* Space between arrow and text */
+}
+
+.home-btn b {
+  font-size: 20px;           /* Slightly larger for the arrow */
+}
+
+.home-btn:hover {
+  background-color: #45a049; /* Darker green on hover */
+}
+
+.home-btn:focus {
+  outline: none;             /* Remove default button focus */
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Add a shadow on focus */
+}
+
 
 /* Responsive Styles */
 @media (max-width: 768px) {
