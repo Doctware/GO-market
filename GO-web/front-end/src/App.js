@@ -22,11 +22,13 @@ const Header = ({ isAuthenticated, setIsAuthenticated }) => {
       <div className='nav-container'>
         <nav>
           <Link to='/' className='home-nav-link'>Home</Link>
-          {isAuthenticated ? (
-            <button className='logout-button' onClick={handleLogout}>Logout</button>
-          ) : (
-            <Link to='/login' className='login-button'>Login</Link>
-          )}
+          {isAuthenticated
+            ? (
+              <button className='logout-button' onClick={handleLogout}>Logout</button>
+              )
+            : (
+              <Link to='/login' className='login-button'>Login</Link>
+              )}
         </nav>
       </div>
     </header>
@@ -56,7 +58,7 @@ const GoView = ({ isAuthenticated }) => {
         </div>
       </div>
       <div className='e_b_container'>
-        <Link to={isAuthenticated ? "/sellers" : "/login"}>
+        <Link to={isAuthenticated ? '/sellers' : '/login'}>
           <button className='e_button'>Explore</button>
         </Link>
       </div>
@@ -69,17 +71,38 @@ const GoView = ({ isAuthenticated }) => {
 const LoginPage = ({ setIsAuthenticated }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Simulate authentication success
-    setIsAuthenticated(true);
-    navigate('/sellers'); // Redirect to Sellers page after login
+    try {
+      const response = await fetch('http://localhost:5000/api/v1/login', {
+        method: 'POST',
+        headers: {
+		  'Content-type': 'application/json'
+        },
+	 	body: JSON.stringify({ email, password })
+      });
+
+	    const data = await response.json();
+
+		  if (response.ok) {
+			  setIsAuthenticated(true);
+			  navigate('/sellers'); // redirect to sellers page after login
+		  } else {
+			  setErrorMessage(data.error || 'Not a GO uaer!!. or typical error please try again');
+		  }
+	  } catch (error) {
+		  setErrorMessage('Please retry.');
+	  }
   };
 
   return (
     <div className='login-modal'>
+      <Link to='/' className='b_home-button'>
+        <button className='home-btn'> <b>&larr;</b> GO home</button>
+      </Link>
       <div className='login-card'>
         <h2 className='login-title'>Login</h2>
         <form onSubmit={handleSubmit} className='login-form'>
@@ -116,7 +139,7 @@ const LoginPage = ({ setIsAuthenticated }) => {
 };
 
 /* Main App Component */
-function App() {
+function App () {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
@@ -126,7 +149,7 @@ function App() {
         <Route path='/' element={<GoView isAuthenticated={isAuthenticated} />} />
         <Route path='/login' element={<LoginPage setIsAuthenticated={setIsAuthenticated} />} />
         <Route path='/sign-up' element={<SignupForm />} />
-        
+
         {/* Private Route protecting Sellers Page */}
         <Route
           path='/sellers'
