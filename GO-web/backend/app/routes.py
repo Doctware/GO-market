@@ -45,3 +45,17 @@ def register_user():
     db.session.commit()
 
     return jsonify({"message": "Successfully registered to GO!"}), 201
+
+@go_app_bp.route('/login', methods=['POST'])
+def login():
+    """ Handle user login """
+    data = request.get_json()
+
+    # fetch user bt email
+    user = User.query.filter_by(email=data['email']).first()
+
+    # check if user exists and passwor mathes
+    if user and user.check_password(data['password']):
+        return jsonify({'message': "successfully login!! GO user!!"}), 200
+    else:
+        return jsonify({'message': 'Not a GO user!! or wrong input'}), 401
