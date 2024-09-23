@@ -7,7 +7,7 @@ const SignupForm = () => {
     username: '',
     email: '',
     password: '',
-    confirmPassword: '',
+    confirmPassword: ''
   });
   const navigate = useNavigate();
 
@@ -21,24 +21,24 @@ const SignupForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match!");
+      alert('Passwords do not match!');
       return;
     }
 
     try {
-      const response = await fetch('http://localhost:5001/api/register', {
+      const response = await fetch('http://localhost:5000/api/v1/register', {
         method: 'POST',
         body: JSON.stringify({
           name: formData.username,
           email: formData.email,
           password: formData.password,
-          role: 'buyer', // Adjust this as needed
+          role: 'buyer' // Adjust this as needed
         }),
         headers: {
-          'Content-Type': 'application/json',
-        },
+          'Content-Type': 'application/json'
+        }
       });
 
       if (response.ok) {
@@ -54,6 +54,9 @@ const SignupForm = () => {
 
   return (
     <div className='signup-modal'>
+      <Link to='/' className='home-button'>
+        <button className='home-btn'> <b>&larr;</b> GO home</button>
+      </Link>
       <div className='signup-card'>
         <h2 className='signup-title'>Sign Up</h2>
         <form onSubmit={handleSubmit} className='signup-form'>
