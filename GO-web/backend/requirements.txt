@@ -30,6 +30,6 @@ simple-websocket==1.0.0
 six==1.16.0
 SQLAlchemy==2.0.32
 typing_extensions==4.12.2
-Werkzeug==3.0.4
+Werkzeug==2.0.0
 wsproto==1.2.0
 zipp==3.20.1
