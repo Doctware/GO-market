@@ -5,7 +5,7 @@ import Footer from './Footer.js';
 import goImage from './goImage/seller0.jpeg';
 import SignupForm from './SignupForm.js';
 import SellerPage from './SellersPage.js';
-import PrivateRoute from './Authenticator.js'; // Fixed import
+import PrivateRoute from './Authenticator.js';
 
 /* Header component */
 const Header = ({ isAuthenticated, setIsAuthenticated }) => {
@@ -77,7 +77,7 @@ const LoginPage = ({ setIsAuthenticated }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:5000/api/v1/login', {
+      const response = await fetch('https://www.doctwaretech.tech/api/v1/login', {
         method: 'POST',
         headers: {
 		  'Content-type': 'application/json'
