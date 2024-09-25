@@ -27,7 +27,7 @@ def create_app():
     migrate.init_app(app, db)
     login_manager.init_app(app)
 
-    CORS(app)  # Enabling CORS for the front-end communication
+    CORS(app, resources={r"/*": {"origin": "https://go-market-nu.vercel.app/"}})  # Enabling CORS for the front-end communication
 
     # Importing blueprint/routes
     from app.routes import go_app_bp
