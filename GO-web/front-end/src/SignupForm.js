@@ -28,7 +28,7 @@ const SignupForm = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/v1/register', {
+      const response = await fetch('https://www.doctwaretech.tech/api/v1/register', {
         method: 'POST',
         body: JSON.stringify({
           name: formData.username,
